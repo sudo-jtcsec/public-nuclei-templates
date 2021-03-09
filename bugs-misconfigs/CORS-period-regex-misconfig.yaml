@@ -14,7 +14,7 @@ requests:
         User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0
         Accept-Language: en-US,en;q=0.9
         Connection: close
-        Origin: {{replace(Hostname,".","z")}}
+        Origin: {{replace(BaseURL,".","z")}}
        
     matchers-condition: and
     matchers:
@@ -28,7 +28,7 @@ requests:
         part: header
         negative: true
         regex:
-                - Access\-Control\-Allow\-Origin\:[\s]+{{Hostname}}}
+                - Access\-Control\-Allow\-Origin\:[\s]+{{BaseURL}}}
 
 
     extractors:
@@ -37,3 +37,4 @@ requests:
         part: header
         regex:
                 - Access\-Control\-Allow\-Origin\:[\s]+([^\s\.]+)
+
