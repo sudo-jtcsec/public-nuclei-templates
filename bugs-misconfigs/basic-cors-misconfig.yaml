@@ -2,7 +2,7 @@ id: basic-cors-misconfig
 
 info:
   name: Basic CORS misconfiguration
-  author: nadino
+  author: nadino (modified by jtcsec)
   severity: low
   tags: cors
 
@@ -13,6 +13,7 @@ requests:
     headers:
       Origin: https://evil.com
 
+    matchers-condition: and
     matchers:
       - type: word
         words:
@@ -20,3 +21,10 @@ requests:
           - "Access-Control-Allow-Credentials: true"
         condition: and
         part: header
+    extractors:
+      - type: regex
+        name: firstchunk
+        part: header
+        regex:
+                - Access\-Control\-Allow\-Origin\:[\s]+([^\s]+)
+
