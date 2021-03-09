@@ -3,7 +3,7 @@ id: CORS-valid-end-name
 info:
   name: CORS Misconfiguration allowing for any origin that ends in target.com (i.e. nottarget.com)
   author: jtcsec
-  severity: low
+  severity: medium
   tags: cors
 
 requests:
