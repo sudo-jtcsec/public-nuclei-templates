@@ -4,22 +4,12 @@ info:
         name: CORS Misconfig scanning workflow
         author: jtcsec
 
-variables:
-        hascors: CORS-initial-detect.yaml
-        basic_cors_misconfig: basic-cors-misconfig.yaml
-        CORS_null_origin_ACAC: CORS-null-origin-ACAC.yaml
-        CORS_valid_end_name: CORS-valid-end-name.yaml
-        CORS_arbitrary_domain_ACAC: CORS-arbitrary-domain-ACAC.yaml
-        CORS_arbitrary_subdomain_ACAC: CORS-arbitrary-subdomain-ACAC.yaml
-        CORS_period_regex_misconfig: CORS-period-regex-misconfig.yaml
-
-logic:
-        |
-        if hascors() {
-                basic_cors_misconfig()
-                CORS_null_origin_ACAC()
-                CORS_arbitrary_domain_ACAC()
-                CORS_arbitrary_subdomain_ACAC()
-                CORS_period_regex_misconfig()
-                CORS_valid_end_name()
-        }
+workflows:
+  - template: CORS-initial-detect.yaml
+    subtemplates:
+       - template: basic-cors-misconfig.yaml
+       - template: CORS-null-origin-ACAC.yaml
+       - template: CORS-valid-end-name.yaml
+       - template: CORS-arbitrary-domain-ACAC.yaml
+       - template: CORS-arbitrary-subdomain-ACAC.yaml
+       - template: CORS-period-regex-misconfig.yaml    
